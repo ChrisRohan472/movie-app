@@ -42,7 +42,6 @@ const MovieList = ({ type,navigation }) => {
           uri="https://api.themoviedb.org/3/movie/popular?language=en-US&page=1";
           break;
     }
-    console.log(uri)
     const options = {
       method: 'GET',
       url: uri,
@@ -58,7 +57,6 @@ React.useEffect(() => {
 axios
   .request(setUrl(type))
   .then(function (response) {
-    console.log(response.data)
     setMovies(response.data.results)
   })
   .catch(function (error) {
@@ -77,10 +75,12 @@ axios
         <TouchableOpacity 
           key={index.toString()} 
           onPress={() =>  navigation.navigate('Details',item)}
+          testID={`movie-item`} 
         >
           <MovieItem movie={item}/>
         </TouchableOpacity>
       )}
+      testID="movie-list" 
     />
   );
 };

@@ -5,8 +5,8 @@ const Movie = ({ route }) => {
   return (
     <View style={styles.movieItem} >
       <Text h1 style={styles.title}>{movie.original_title}</Text>
-      <Image source={{ uri: "https://image.tmdb.org/t/p/w500"+movie.poster_path }} style={styles.poster} />
-      <Image source={{ uri: "https://image.tmdb.org/t/p/w500"+movie.backdrop_path}} style={styles.poster} />
+      <Image source={{ uri: "https://image.tmdb.org/t/p/w500"+movie.poster_path }} style={styles.poster} testID="poster-image" />
+      <Image source={{ uri: "https://image.tmdb.org/t/p/w500"+movie.backdrop_path}} style={styles.poster}  testID="backdrop-image" />
       <Text style={styles.releaseDate}><Text style={styles.baseText}>Release Date: </Text>{movie.release_date}</Text>
       <Text style={styles.rating}><Text style={styles.baseText}>Average Rating: </Text>{movie.vote_average}</Text>
       <Text style={styles.releaseDate}><Text style={styles.baseText}>Vote Count: </Text> {movie.vote_count}</Text>
