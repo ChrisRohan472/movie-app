@@ -18,6 +18,5 @@ Before you begin, make sure you have the following installed on your machine:
    git clone https://github.com/ChrisRohan472/movie-app.git
   ```bash
   npm install
-  ```bash
-   npm run web
+  npm run web
 
