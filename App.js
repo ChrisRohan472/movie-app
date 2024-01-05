@@ -1,80 +1,74 @@
 import React from 'react';
-import { Tab, Text, TabView } from '@rneui/themed';
+import { Tab, Text, TabView,Divider } from '@rneui/themed';
+import {View,StatusBar} from 'react-native';
 import SwitchComponent from "./search.js"
-import MovieList from "./MovieList.js"
+import MovieList from "./components/MovieList.js"
 export default App=() => {
 const [index, setIndex] = React.useState(0);
-const movies = [
-  {
-    title: 'Movie 1',
-    poster: 'https://example.com/poster1.jpg',
-    releaseDate: '2023-01-01',
-    averageRating: 4.5,
-  },
-  {
-    title: 'Movie 2',
-    poster: 'https://example.com/poster2.jpg',
-    releaseDate: '2023-02-01',
-    averageRating: 3.8,
-  },
-  // Add more movie data as needed
-];
 return (
-  <>
+  <View
+  style={{ flex: 1, marginTop: StatusBar.currentHeight }}
+  >
     <Tab
       value={index}
       onChange={(e) => setIndex(e)}
       indicatorStyle={{
         backgroundColor: 'white',
-        height: 3,
+        height: 5
       }}
       variant="primary"
     >
       <Tab.Item
-        title="Now Playing"
-        titleStyle={{ fontSize: 12 }}
-        icon={{ name: 'timer', type: 'ionicon', color: 'white' }}
+        icon={{ name: 'timer-outline', type: 'ionicon', color: 'white' }}
       />
       <Tab.Item
-        title="Popular"
-        titleStyle={{ fontSize: 12 }}
-        icon={{ name: 'star', type: 'ionicon', color: 'white' }}
+        icon={{ name: 'star-outline', type: 'ionicon', color: 'white' }}
       />
       <Tab.Item
-        title="Top Rated"
-        titleStyle={{ fontSize: 12 }}
-        icon={{ name: 'star', type: 'ionicon', color: 'white' }}
+        icon={{ name: 'flame-outline', type: 'ionicon', color: 'white' }}
       />
         <Tab.Item
-        title="Upcoming"
-        titleStyle={{ fontSize: 12 }}
-        icon={{ name: 'search', type: 'ionicon', color: 'white' }}
+        icon={{ name: 'heart-outline', type: 'ionicon', color: 'white' }}
       />
       <Tab.Item
-        title="search"
-        titleStyle={{ fontSize: 12 }}
         icon={{ name: 'search', type: 'ionicon', color: 'white' }}
       />
     </Tab>
     
     <TabView value={index} onChange={setIndex} animationType="spring">
-      <TabView.Item style={{ backrgroundColor: 'red', width: '100%' }}>
-      <MovieList data={movies} />
+      <TabView.Item style={{  width: '100%' }}>
+        <>
+        <Text h3>Now Playing</Text>
+        <Divider style={{ backgroundColor: 'black',margin:3 }} />
+      <MovieList  type={"now"}/>
+      </>
       </TabView.Item>
-      <TabView.Item style={{ backgroundColor: 'blue', width: '100%' }}>
-      <MovieList data={movies} />
+      <TabView.Item style={{  width: '100%' }}>
+      <>
+        <Text h3>Top Rating</Text>
+        <Divider style={{ backgroundColor: 'black',margin:3 }} />
+      <MovieList  type={"top"} />
+      </>
       </TabView.Item>
-      <TabView.Item style={{ backgroundColor: 'green', width: '100%' }}>
-      <MovieList data={movies} />
+      <TabView.Item style={{  width: '100%' }}>
+      <>
+        <Text h3>Upcoming Movies</Text>
+        <Divider style={{ backgroundColor: 'black',margin:3 }} />
+      <MovieList  type={"upcoming"}/>
+      </>
       </TabView.Item>
-      <TabView.Item style={{ backgroundColor: 'green', width: '100%' }}>
-      <MovieList data={movies} />
+      <TabView.Item style={{ width: '100%' }}>
+      <>
+        <Text h3>Poular Movies</Text>
+        <Divider style={{ backgroundColor: 'black',margin:3 }} />
+      <MovieList type={"popular"}/>
+      </>
       </TabView.Item>
-      <TabView.Item style={{ backgroundColor: 'green', width: '100%' }}>
+      <TabView.Item style={{width: '100%' }}>
       <SwitchComponent/>
       </TabView.Item>
       
     </TabView>
-  </>
+    </View>
 );
 };
