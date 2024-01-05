@@ -1,6 +1,6 @@
 // MovieList.js
 import React from 'react';
-import { View, Text, Image, FlatList, StyleSheet } from 'react-native';
+import { View, Text, Image, FlatList, StyleSheet,TouchableOpacity } from 'react-native';
 import axios from "axios";
 import Toast from 'react-native-toast-message';
 
@@ -15,7 +15,7 @@ const MovieItem = ({ movie }) => {
   );
 };
 
-const MovieList = ({ type }) => {
+const MovieList = ({ type,navigation }) => {
   const [movies, setMovies] = React.useState({});
   const [error, setError] = React.useState(null);
   const showToast = (message) => {
@@ -73,7 +73,14 @@ axios
     <FlatList
       data={movies}
       keyExtractor={(item) => item.original_title}
-      renderItem={({ item }) => <MovieItem movie={item} />}
+      renderItem={({item ,index}) => (
+        <TouchableOpacity 
+          key={index.toString()} 
+          onPress={() =>  navigation.navigate('Details',item)}
+        >
+          <MovieItem movie={item}/>
+        </TouchableOpacity>
+      )}
     />
   );
 };
